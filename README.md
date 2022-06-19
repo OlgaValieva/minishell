@@ -5,3 +5,5 @@ shell
 ## **make**
 ### intry:
 ## ./minishell
+
+# [video](https://www.youtube.com/playlist?list=PLUJCSGGiox1R4wwUO0hS899uT02XDQIc_)
