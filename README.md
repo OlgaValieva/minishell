@@ -11,6 +11,3 @@ shell
 # [GNU Readline Library](https://tiswww.case.edu/php/chet/readline/readline.html#SEC44)
 # [Shell](https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html)
 # [Bash Reference Manual](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html)
-### Testers:
-# [MSH-TESTER](https://github.com/alchrist42/msh_tester)
-# [minishell_test](https://pypi.org/project/minishell-test/#description)
