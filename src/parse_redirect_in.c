@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redirect_in.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carys <carys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smdyan <smdyan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 17:31:32 by smdyan            #+#    #+#             */
-/*   Updated: 2022/06/18 11:52:20 by carys            ###   ########.fr       */
+/*   Updated: 2022/06/11 17:31:34 by smdyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	open_in_file(char *in_file, t_all *all)
 		perror(tmp);
 		free(tmp);
 		free(in_file);
-		g_exit = 1;
+		g_exit_status = 1;
 		return (1);
 	}
 	close(all->fd_in);

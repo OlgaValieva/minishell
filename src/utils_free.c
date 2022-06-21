@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carys <carys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smdyan <smdyan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 17:34:44 by smdyan            #+#    #+#             */
-/*   Updated: 2022/06/18 12:04:18 by carys            ###   ########.fr       */
+/*   Updated: 2022/06/11 17:34:47 by smdyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void	pipe_list_free(t_all *all)
 
 void	free_all(t_all *all)
 {
-	if (all->envp)
-		ft_free(all->envp);
+	if (all->path)
+		ft_free(all->path);
 	envp_list_free(all);
 	argv_list_free(all, 0);
 	pipe_list_free(all);

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carys <carys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smdyan <smdyan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 17:27:39 by smdyan            #+#    #+#             */
-/*   Updated: 2022/06/18 21:15:23 by carys            ###   ########.fr       */
+/*   Updated: 2022/06/11 17:27:45 by smdyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	child_pipe(t_all *all)
+void	child_pipe(t_all *all)
 {
 	char	*full_path;
 	char	**env;
@@ -30,7 +30,7 @@ static void	child_pipe(t_all *all)
 	exit(127);
 }
 
-static void	parent_pipe(t_all *all, pid_t pid)
+void	parent_pipe(t_all *all, pid_t pid)
 {
 	all->pipex->pid = pid;
 	close(all->pipe_fd_out);
@@ -41,21 +41,21 @@ static void	parent_pipe(t_all *all, pid_t pid)
 		all->pipex->fd_out, all->pipex->fd_add_out);
 }
 
-static void	exec_pipe(t_all *all)
+void	exec_pipe(t_all *all)
 {
 	pid_t	pid;
 
 	handle_signals_in_proc();
 	if (init_pipe_for_fd(all) == 1)
 	{
-		g_exit = 1;
+		g_exit_status = 1;
 		return ;
 	}
 	pid = fork();
 	if (pid == -1)
 	{
 		perror(ER_NAME);
-		g_exit = 1;
+		g_exit_status = 1;
 		return ;
 	}
 	if (!pid)
@@ -64,7 +64,7 @@ static void	exec_pipe(t_all *all)
 		parent_pipe(all, pid);
 }
 
-static void	pipeline(t_all *all)
+void	pipeline(t_all *all)
 {
 	t_pipe	*tmp;
 	int		status;
@@ -100,8 +100,8 @@ void	exec_module(t_all *all)
 		size = len_pipex(all->pipex);
 		if (size == 1)
 		{
-			if (builtin(all))
-				exec_one(all);
+			if (builtin(all)) //start executing builtin command
+				exec_one(all); //..or exec linux
 		}
 		else
 			pipeline(all);

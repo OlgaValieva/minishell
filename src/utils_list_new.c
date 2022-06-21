@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils_list_new.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carys <carys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smdyan <smdyan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 17:35:01 by smdyan            #+#    #+#             */
-/*   Updated: 2022/06/18 19:33:13 by carys            ###   ########.fr       */
+/*   Updated: 2022/06/11 17:35:07 by smdyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_arg	*argnew(char *s)
+t_arg	*argnew(char *s)
 {
 	t_arg	*arg_list;
 
@@ -24,7 +24,7 @@ static t_arg	*argnew(char *s)
 	return (arg_list);
 }
 
-static void	addback_argnew(t_arg **arg_list, t_arg *new)
+void	addback_argnew(t_arg **arg_list, t_arg *new)
 {
 	t_arg	*el;
 

@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: carys <carys@student.42.fr>                +#+  +:+       +#+         #
+#    By: smdyan <smdyan@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/06/15 17:30:39 by carys             #+#    #+#              #
-#    Updated: 2022/06/18 17:43:56 by carys            ###   ########.fr        #
+#    Created: 2022/06/11 17:19:33 by smdyan            #+#    #+#              #
+#    Updated: 2022/06/11 17:21:17 by smdyan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME	=	minishell
 
@@ -24,28 +25,20 @@ SRCNAME	=	main.c					bin_echo_exit_pwd_env.c	ft_lstadd_back.c\
 			parse_redirect_in.c		parse_utils.c			exec_final.c\
 			parse_heredoc.c			parser_check.c			exec_utils_2.c
 
-BLTDIR = ./MD/
+BLTDIR = ./built/
 SRCDIR = ./src/
-HEADER = ./includes
+SRCS = ${addprefix ${SRCDIR}, ${SRCNAME}}
+OBJS	=	${addprefix ${BLTDIR}, ${SRCNAME:%.c=%.o}}
+
+HEADER	=	./includes
+
+LIBREADLN = /usr/local/Cellar/readline/8.1.2/lib/
+HREADLN = /usr/local/Cellar/readline/8.1.2/include
 LIBFT = ./libft
 
-SRCS 	= ${addprefix ${SRCDIR}, ${SRCNAME}}
-OBJS	= ${addprefix ${BLTDIR}, ${SRCNAME:%.c=%.o}}
+CC		=	gcc
 
-LIBREADLN = /Users/carys/.brew/Cellar/readline/8.1.2/lib
-HREADLN = /Users/carys/.brew/Cellar/readline/8.1.2/include
-
-CC		=	cc
-RM		=	rm -rf
-
-CFLAGS	=	-Wall -Wextra -Werror 
-
-BGN		=	START
-END		=	FINISH
-CLR		=	\x1b[4;33m
-RST		=	\x1b[0m
-
-.PHONY:		all clean fclean re
+CFLAGS	=	-Wall -Wextra -Werror
 
 all:		${BLTDIR} ${NAME}
 
@@ -53,29 +46,22 @@ $(BLTDIR):
 	mkdir -p $(BLTDIR)
 
 ${BLTDIR}%.o: ${SRCDIR}%.c
-			${CC} ${CFLAGS} -g -I${HEADER} -MD -c $< -o $@
+			${CC} ${CFLAGS} -I${HEADER} -c $< -o $@ -MD
 
 include $(wildcard *.d)
-include $(wildcard libft/*.d)
-include $(wildcard MD/*.d)
-include $(wildcard src/*.d)
 
 ${NAME}:	${OBJS}
-			${MAKE} -C ${LIBFT}
-			${CC} ${CFLAGS} -L${LIBREADLN} -lreadline -L${LIBFT} -lft\
+			make all -C ${LIBFT}
+			${CC} ${CFLAGS} -g -L${LIBREADLN} -lreadline -L$(LIBFT) -lft\
 				-I${HREADLN} -o ${NAME} ${OBJS}
-			@printf "${CLR}${BGN}${RST}\n"
-
+			
 clean:
-			${RM} ${BLTDIR}
-			${MAKE} clean -C ${LIBFT}
+			rm -rf ${BLTDIR}
+			make fclean -C ${LIBFT}
 
 fclean:		clean
-			${RM} ${NAME}
-			${MAKE} fclean -C ${LIBFT}
-			@printf "${CLR}${END}${RST}\n"
+			rm -f ${NAME}
 
 re:			fclean all
 
-norm:
-			@norminette ${SRCS} ${HEADER} ${LIBFT}
+.PHONY:		all clean fclean re

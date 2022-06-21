@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carys <carys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smdyan <smdyan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 17:30:52 by smdyan            #+#    #+#             */
-/*   Updated: 2022/06/18 20:02:49 by carys            ###   ########.fr       */
+/*   Updated: 2022/06/11 17:30:54 by smdyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	len_arg(t_arg *arg)
+int	len_arg(t_arg *arg)
 {
 	t_arg	*tmp;
 	int		len;
@@ -27,7 +27,7 @@ static int	len_arg(t_arg *arg)
 	return (len);
 }
 
-static char	**arg_list_to_char(t_all *all, int len)
+char	**arg_list_to_char(t_all *all, int len)
 {
 	char	**arg;
 	int		i;
@@ -48,7 +48,7 @@ static char	**arg_list_to_char(t_all *all, int len)
 	return (arg);
 }
 
-static void	init_all_after_pipe(t_all *all)
+void	init_all_after_pipe(t_all *all)
 {
 	all->fd_in = -1;
 	all->fd_add_out = -1;

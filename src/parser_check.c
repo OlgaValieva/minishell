@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carys <carys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smdyan <smdyan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 17:33:47 by smdyan            #+#    #+#             */
-/*   Updated: 2022/06/18 19:26:10 by carys            ###   ########.fr       */
+/*   Updated: 2022/06/11 17:33:51 by smdyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ int	check_forbidden_symbols(char *str, int one, int two, int i)
 int	check_closed_quote(int result)
 {
 	if (result == -1)
-		ft_putstr_fd(ER_NAME": syntax error: forbidden characters: '\\' or ';'\n", 2);
+		ft_putstr_fd(ER_NAME": error: forbidden characters: '\\' or ';'\n", 2);
 	else if (result == -2)
-		ft_putstr_fd(ER_NAME": syntax error: unclosed \' single quote\n", 2);
+		ft_putstr_fd(ER_NAME": error: unclosed \' single quote\n", 2);
 	else if (result == -3)
-		ft_putstr_fd(ER_NAME": syntax error: unclosed \" double quote\n", 2);
+		ft_putstr_fd(ER_NAME": error: unclosed \" double quote\n", 2);
 	if (result < 0)
 	{
-		g_exit = 1;
+		g_exit_status = 1;
 		return (1);
 	}
 	return (0);
@@ -58,13 +58,13 @@ static void	token_pipe(char *str, int i)
 	else
 		ft_putstr_fd(ER_NAME
 			": syntax error near unexpected token '|'\n", 2);
-	g_exit = 258;
+	g_exit_status = 258;
 }
 
-static int	print_unclosed_pipe(char *check_str)
+int	print_unclosed_pipe(char *check_str)
 {
 	ft_putstr_fd(ER_NAME": error: unclosed pipe\n", 2);
-	g_exit = 258;
+	g_exit_status = 258;
 	free(check_str);
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_signal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carys <carys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smdyan <smdyan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 17:28:49 by smdyan            #+#    #+#             */
-/*   Updated: 2022/06/18 21:07:30 by carys            ###   ########.fr       */
+/*   Updated: 2022/06/11 17:29:00 by smdyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	my_sigquit_proc(int sig)
 {
 	printf("Quit: %d\n", sig);
-	g_exit = 131;
+	g_exit_status = 131;
 }
 
-static void	my_sigint_proc(int sig)
+void	my_sigint_proc(int sig)
 {
 	if (sig == SIGINT)
 	{
 		write(2, "\n", 1);
-		g_exit = 130;
+		g_exit_status = 130;
 	}
 }
 

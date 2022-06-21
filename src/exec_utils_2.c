@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carys <carys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smdyan <smdyan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 17:29:36 by smdyan            #+#    #+#             */
-/*   Updated: 2022/06/18 12:04:18 by carys            ###   ########.fr       */
+/*   Updated: 2022/06/11 17:29:39 by smdyan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void slash(t_all *all)
 	char	*buf;
 
 	i = -1;
-	while (all->envp[++i])
+	while (all->path[++i])
 	{
-		buf = all->envp[i];
-		all->envp[i] = ft_strjoin(buf, "/");
+		buf = all->path[i];
+		all->path[i] = ft_strjoin(buf, "/");
 		free(buf);
-	}
+	}	
 }
